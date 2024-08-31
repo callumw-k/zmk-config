@@ -7,14 +7,13 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/keys.h>
 
 / {
     behaviors {
         hrm_mods: hrm_mods {
             compatible = "zmk,behavior-hold-tap";
             label = "HRM_MODS";
-            bindings = <&kp>, <&kt>;
+            bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
             tapping-term-ms = <280>;
