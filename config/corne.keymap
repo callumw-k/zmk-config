@@ -112,10 +112,10 @@
 
         media_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans         &trans  &trans           &trans             &trans            &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans         &trans  &kp K_VOLUME_UP  &kp K_VOLUME_DOWN  &kp K_PLAY_PAUSE  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &bootloader    &trans  &trans           &trans             &trans            &trans  &trans
-                        &trans  &to 0   &trans         &trans  &to 0            &trans
+&trans  &trans  &trans  &trans  &trans  &trans         &trans  &trans             &trans           &trans            &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans         &trans  &kp K_VOLUME_DOWN  &kp K_VOLUME_UP  &kp K_PLAY_PAUSE  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &bootloader    &trans  &trans             &trans           &trans            &trans  &trans
+                        &trans  &to 0   &trans         &trans  &to 0              &trans
             >;
         };
     };
