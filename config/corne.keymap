@@ -66,7 +66,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        home_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
             // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
@@ -81,7 +81,7 @@
             >;
         };
 
-        lower_layer {
+        number_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
             // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
@@ -96,7 +96,7 @@
             >;
         };
 
-        raise_layer {
+        symbol_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
             // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
@@ -120,7 +120,7 @@
             >;
         };
 
-        left_hand_controls {
+        command_layer {
             bindings = <
 &trans  &trans     &trans  &trans     &trans     &kp LC(T)    &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &kp LC(A)  &trans  &trans     &trans     &trans       &trans  &trans  &trans  &trans  &trans  &trans
