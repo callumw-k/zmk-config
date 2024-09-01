@@ -16,7 +16,7 @@
             bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <180>;
+            tapping-term-ms = <200>;
             require-prior-idle-ms = <150>;
             flavor = "balanced";
             hold-trigger-on-release;
