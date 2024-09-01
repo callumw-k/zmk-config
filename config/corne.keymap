@@ -77,7 +77,7 @@
 &kp TAB         &kp Q                 &kp W                 &kp E              &kp R                   &kp T                      &kp Y                                 &kp U               &kp I              &kp O                 &kp P                          &kp BSPC
 &kp ESCAPE      &hrm_mods LEFT_GUI A  &hrm_mods LEFT_ALT S  &hrm_mods LCTRL D  &hrm_mods LEFT_SHIFT F  &kp G                      &kp H                                 &hrm_mods RSHIFT J  &hrm_mods RCTRL K  &hrm_mods LEFT_ALT L  &hrm_mods RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
 &kp LEFT_SHIFT  &kp Z                 &kp X                 &kp C              &kp V                   &kp B                      &kp N                                 &kp M               &kp COMMA          &kp DOT               &kp FSLH                       &kp ENTER
-                                                            &kp LGUI           &mo 1                   &space_hold_mod 2 SPACE    &sticky_shift_mod_layer 1 LEFT_SHIFT  &mo 2               &kp LEFT_ALT
+                                                            &mo 4              &mo 1                   &space_hold_mod 2 SPACE    &sticky_shift_mod_layer 1 LEFT_SHIFT  &mo 2               &mo 4
             >;
         };
 
@@ -89,9 +89,9 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp N1  &kp N2  &kp N3        &kp N4  &kp N5       &kp N6    &kp N7          &kp N8        &kp N9     &kp N0  &kp BSPC
-&trans     &trans  &trans  &trans        &trans  &trans       &kp LEFT  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT  &trans  &kp SINGLE_QUOTE
-&kp LSHFT  &trans  &trans  &trans        &trans  &trans       &kp END   &kp PAGE_DOWN   &kp PAGE_UP   &kp DEL    &trans  &kp ENTER
+&kp TAB    &kp N1  &kp N2  &kp N3        &kp N4  &kp N5       &kp N6    &kp N7          &kp N8        &kp N9     &kp N0   &kp BSPC
+&trans     &trans  &trans  &trans        &trans  &trans       &kp LEFT  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT  &trans   &kp SINGLE_QUOTE
+&kp LSHFT  &trans  &trans  &trans        &trans  &trans       &kp END   &kp PAGE_DOWN   &kp PAGE_UP   &kp DEL    &kp INS  &kp ENTER
                            &kp LEFT_ALT  &trans  &kp SPACE    &kp RET   &trans          &kp RALT
             >;
         };
@@ -104,10 +104,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp EXCL   &kp AT     &kp HASH      &kp DLLR   &kp PRCNT         &kp CARET  &kp AMPS                    &kp LEFT_PARENTHESIS                &kp RIGHT_PARENTHESIS  &kp ASTERISK  &kp BSPC
-&kp LCTRL  &kp LC(A)  &trans     &trans        &trans     &kp MINUS         &kp MINUS  &hrm_mods LEFT_SHIFT EQUAL  &hrm_mods RIGHT_CONTROL LEFT_BRACE  &kp RIGHT_BRACE        &kp BSLH      &kp GRAVE
-&kp LSHFT  &trans     &kp LA(A)  &kp LC(C)     &kp LC(V)  &kp UNDERSCORE    &kp UNDER  &kp PLUS                    &kp LEFT_BRACKET                    &kp RIGHT_BRACKET      &kp PIPE      &kp TILDE
-                                 &kp LEFT_ALT  &trans     &kp SPACE         &kp RET    &trans                      &kp RALT
+&kp TAB  &kp EXCL      &kp AT        &kp HASH   &kp DLLR        &kp PRCNT    &kp CARET  &kp AMPS                    &kp LEFT_PARENTHESIS                &kp RIGHT_PARENTHESIS  &kp ASTERISK  &kp BSPC
+&trans   &kp LEFT_GUI  &kp LEFT_ALT  &kp LCTRL  &kp LEFT_SHIFT  &trans       &kp MINUS  &hrm_mods LEFT_SHIFT EQUAL  &hrm_mods RIGHT_CONTROL LEFT_BRACE  &kp RIGHT_BRACE        &kp BSLH      &kp GRAVE
+&trans   &trans        &trans        &trans     &trans          &trans       &kp UNDER  &kp PLUS                    &kp LEFT_BRACKET                    &kp RIGHT_BRACKET      &trans        &trans
+                                     &trans     &trans          &kp SPACE    &kp RET    &trans                      &trans
             >;
         };
 
@@ -117,6 +117,15 @@
 &trans  &trans        &trans        &trans        &trans  &trans         &trans  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_PLAY_PAUSE  &trans          &trans
 &trans  &trans        &trans        &trans        &trans  &bootloader    &trans  &trans             &trans           &trans            &trans          &trans
                                     &trans        &to 0   &trans         &trans  &to 0              &trans
+            >;
+        };
+
+        left_hand_controls {
+            bindings = <
+&trans  &trans     &trans  &trans     &trans     &kp LC(T)    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LC(A)  &trans  &trans     &trans     &trans       &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans     &trans  &kp LC(C)  &kp LC(V)  &trans       &trans  &trans  &trans  &trans  &trans  &trans
+                           &trans     &trans     &trans       &trans  &trans  &trans
             >;
         };
     };
