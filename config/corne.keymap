@@ -89,10 +89,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6    &kp N7          &kp N8        &kp N9     &kp N0  &kp BSPC
-&trans     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT  &trans  &kp SINGLE_QUOTE
-&kp LSHFT  &trans        &trans        &trans        &trans        &trans          &kp END   &kp PAGE_DOWN   &kp PAGE_UP   &kp DEL    &trans  &kp ENTER
-                                       &kp LEFT_ALT  &trans        &kp SPACE       &kp RET   &trans          &kp RALT
+&kp TAB    &kp N1  &kp N2  &kp N3        &kp N4  &kp N5       &kp N6    &kp N7          &kp N8        &kp N9     &kp N0  &kp BSPC
+&trans     &trans  &trans  &trans        &trans  &trans       &kp LEFT  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT  &trans  &kp SINGLE_QUOTE
+&kp LSHFT  &trans  &trans  &trans        &trans  &trans       &kp END   &kp PAGE_DOWN   &kp PAGE_UP   &kp DEL    &trans  &kp ENTER
+                           &kp LEFT_ALT  &trans  &kp SPACE    &kp RET   &trans          &kp RALT
             >;
         };
 
@@ -113,10 +113,10 @@
 
         media_layer {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans         &trans  &trans             &trans           &trans            &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans         &trans  &kp K_VOLUME_DOWN  &kp K_VOLUME_UP  &kp K_PLAY_PAUSE  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &bootloader    &trans  &trans             &trans           &trans            &trans  &trans
-                        &trans  &to 0   &trans         &trans  &to 0              &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans  &trans         &trans  &trans             &trans           &trans            &trans  &trans
+&trans  &trans        &trans        &trans        &trans  &trans         &trans  &kp K_VOLUME_DOWN  &kp K_VOLUME_UP  &kp K_PLAY_PAUSE  &trans  &trans
+&trans  &trans        &trans        &trans        &trans  &bootloader    &trans  &trans             &trans           &trans            &trans  &trans
+                                    &trans        &to 0   &trans         &trans  &to 0              &trans
             >;
         };
     };
