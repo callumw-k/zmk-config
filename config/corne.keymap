@@ -104,10 +104,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp EXCL  &kp AT  &kp HASH      &kp DLLR     &kp PRCNT         &kp CARET  &kp AMPS                    &kp LEFT_PARENTHESIS                &kp RIGHT_PARENTHESIS  &kp ASTERISK  &kp BSPC
-&kp LCTRL  &trans    &trans  &trans        &trans       &kp MINUS         &kp MINUS  &hrm_mods LEFT_SHIFT EQUAL  &hrm_mods RIGHT_CONTROL LEFT_BRACE  &kp RIGHT_BRACE        &kp BSLH      &kp GRAVE
-&kp LSHFT  &trans    &trans  &kp K_COPY    &kp K_PASTE  &kp UNDERSCORE    &kp UNDER  &kp PLUS                    &kp LEFT_BRACKET                    &kp RIGHT_BRACKET      &kp PIPE      &kp TILDE
-                             &kp LEFT_ALT  &trans       &kp SPACE         &kp RET    &trans                      &kp RALT
+&kp TAB    &kp EXCL   &kp AT     &kp HASH      &kp DLLR   &kp PRCNT         &kp CARET  &kp AMPS                    &kp LEFT_PARENTHESIS                &kp RIGHT_PARENTHESIS  &kp ASTERISK  &kp BSPC
+&kp LCTRL  &kp LC(A)  &trans     &trans        &trans     &kp MINUS         &kp MINUS  &hrm_mods LEFT_SHIFT EQUAL  &hrm_mods RIGHT_CONTROL LEFT_BRACE  &kp RIGHT_BRACE        &kp BSLH      &kp GRAVE
+&kp LSHFT  &trans     &kp LA(A)  &kp LC(C)     &kp LC(V)  &kp UNDERSCORE    &kp UNDER  &kp PLUS                    &kp LEFT_BRACKET                    &kp RIGHT_BRACKET      &kp PIPE      &kp TILDE
+                                 &kp LEFT_ALT  &trans     &kp SPACE         &kp RET    &trans                      &kp RALT
             >;
         };
 
