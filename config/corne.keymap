@@ -50,9 +50,8 @@
             bindings = <&mo>, <&instant_sticky_shift>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
             flavor = "tap-preferred";
-            quick-tap-ms = <175>;
         };
 
         hrm_mods_right: hrm_mods_right {
