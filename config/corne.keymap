@@ -86,8 +86,8 @@
 		symbol_layer {
 			bindings = <
 			&none  &kp LEFT_BRACE    &kp AMPERSAND  &kp STAR   &kp LEFT_PARENTHESIS  &kp RIGHT_BRACE    &kp  &kp C_AC_REDO   &kp C_AC_PASTE  &kp C_AC_COPY  &kp C_AC_CUT     &kp C_AC_UNDO
-			&none       &kp DOLLAR  &kp PERCENT    &kp CARET  &kp RIGHT_SHIFT       &kp                &kp  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT_ARROW  &kp
-			&none             &kp         &kp            &kp        &kp                   &kp                &kp  &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP    &kp END          &kp DELETE
+			&none       &kp COLON  &kp DOLLAR    &kp PERCENT  &kp CARET       &kp PLUS                &kp  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT_ARROW  &kp
+			&none             &kp TILDE        &kp EXCLAMATION            &kp AT        &kp HASH                   &kp PIPE              &kp  &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP    &kp END          &kp DELETE
 			&none        &kp                   &kp                &kp  &kp             &kp
 			>;
 		};
