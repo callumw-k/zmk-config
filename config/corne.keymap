@@ -87,7 +87,7 @@
 			bindings = <
 			&none  &kp LEFT_BRACE  &kp AMPERSAND    &kp STAR              &kp LEFT_PARENTHESIS   &kp RIGHT_BRACE    &none  &none &none &none &none &none
 			&none  &kp COLON       &kp DOLLAR       &kp PERCENT           &kp CARET              &kp PLUS           &none  &kp LSHFT      &kp LCTRL       &kp LEFT_ALT   &kp LEFT_GUI  &none
-			&none  &kp TILDE       &kp EXCLAMATION  &kp AT                &kp HASH               &kp PIPE           &none  &kp HOME       &kp PAGE_DOWN   &kp PAGE_UP    &kp END       &kp DELETE
+			&none  &kp TILDE       &kp EXCLAMATION  &kp AT                &kp HASH               &kp PIPE           &none  &none &none &none &none &none
 			&kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp MINUS          &none  &none          &none
 			>;
 		};
