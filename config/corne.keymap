@@ -41,7 +41,7 @@
             bindings = <&kp>;
             #binding-cells = <1>;
             quick-release;
-            release-after-ms = <600>;
+            release-after-ms = <2000>;
         };
 
         sticky_shift_mod_layer: sticky_shift_mod_layer {
@@ -50,8 +50,8 @@
             bindings = <&mo>, <&instant_sticky_shift>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "hold-preferred";
+            tapping-term-ms = <100>;
+            flavor = "tap-preferred";
             quick-tap-ms = <175>;
         };
 
