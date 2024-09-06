@@ -77,18 +77,18 @@
 
         nav_layer {
             bindings = <
-&trans  &bt BT_SEL 0  &bt BT_SEL 1  &trans             &trans           &trans    &kp C_AC_REDO  &kp C_AC_PASTE  &kp C_AC_COPY   &kp C_AC_CUT  &kp C_AC_UNDO    &bootloader
-&trans  &kp LEFT_GUI  &kp LEFT_ALT  &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &trans    &kp CAPSLOCK   &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &trans
-&trans  &trans        &trans        &trans             &trans           &trans    &kp HOME       &kp PAGE_DOWN   &kp PAGE_UP     &kp END       &kp DELETE       &trans
-                                    &trans             &trans           &trans    &trans         &trans          &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &trans             &trans           &trans    &kp C_AC_REDO   &kp C_AC_PASTE  &kp C_AC_COPY  &kp C_AC_CUT  &kp C_AC_UNDO     &bootloader
+&trans  &kp LEFT_GUI  &kp LEFT_ALT  &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &trans    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT     &kp LOCKING_CAPS  &trans
+&trans  &trans        &trans        &trans             &trans           &trans    &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP    &kp END       &kp INSERT        &none
+                                    &trans             &trans           &trans    &kp ENTER       &kp BACKSPACE   &kp DELETE
             >;
         };
 
         num_layer {
             bindings = <
-&none  &kp LEFT_BRACKET  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RIGHT_BRACKET    &none  &none      &none      &none         &none         &none
+&none  &kp LEFT_BRACKET  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RIGHT_BRACKET    &none  &none      &none      &none         &none         &kp BACKSPACE
 &none  &kp SEMI          &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp EQUAL            &none  &kp LSHFT  &kp LCTRL  &kp LEFT_ALT  &kp LEFT_GUI  &none
-&none  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none  &none      &none      &none         &none         &none
+&none  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none  &none      &none      &none         &none         &kp RIGHT_SHIFT
                                        &kp DOT       &kp NUMBER_0  &kp MINUS            &none  &none      &none
             >;
         };
