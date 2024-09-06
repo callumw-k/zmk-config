@@ -10,9 +10,9 @@
 
 / {
     behaviors {
-        hrm_mods_left: hrm_mods_left {
+        hrm_both_sides: hrm_both_sides {
             compatible = "zmk,behavior-hold-tap";
-            label = "HRM_MODS_LEFT";
+            label = "HRM_BOTH_SIDES";
             bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
@@ -20,8 +20,6 @@
             flavor = "balanced";
             quick-tap-ms = <175>;
             require-prior-idle-ms = <140>;
-            hold-trigger-on-release;
-            hold-trigger-key-positions = <36 37 38 39 40 41 6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35>;
         };
 
         layer_hold_mods: layer_hold_mods {
@@ -53,20 +51,6 @@
             tapping-term-ms = <150>;
             flavor = "tap-preferred";
         };
-
-        hrm_mods_right: hrm_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HRM_MODS_RIGHT";
-            bindings = <&kp>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <280>;
-            flavor = "balanced";
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <160>;
-            hold-trigger-on-release;
-            hold-trigger-key-positions = <36 37 38 39 40 41 0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29>;
-        };
     };
 
     combos {
@@ -88,10 +72,10 @@
 
         home_layer {
             bindings = <
-&kp TAB         &kp Q                      &kp W                      &kp E                      &kp R                        &kp T        &kp Y                     &kp U                                 &kp I                    &kp O                       &kp P                                &kp BSPC
-&kp ESCAPE      &hrm_mods_left LEFT_GUI A  &hrm_mods_left LEFT_ALT S  &hrm_mods_left LCTRL D     &hrm_mods_left LEFT_SHIFT F  &kp G        &kp H                     &hrm_mods_right RSHIFT J              &hrm_mods_right RCTRL K  &hrm_mods_right LEFT_ALT L  &hrm_mods_right RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
-&kp LEFT_SHIFT  &kp Z                      &kp X                      &kp C                      &kp V                        &kp B        &kp N                     &kp M                                 &kp COMMA                &kp DOT                     &kp FSLH                             &kp RIGHT_SHIFT
-                                                                      &layer_hold_mods 4 ESCAPE  &mo 1                        &kp SPACE    &layer_hold_mods 3 ENTER  &sticky_shift_mod_layer 2 LEFT_SHIFT  &mo 5
+&kp TAB         &kp Q                       &kp W                       &kp E                      &kp R                         &kp T        &kp Y                     &kp U                                 &kp I                            &kp O                       &kp P                                &kp BSPC
+&kp ESCAPE      &hrm_both_sides LEFT_GUI A  &hrm_both_sides LEFT_ALT S  &hrm_both_sides LCTRL D    &hrm_both_sides LEFT_SHIFT F  &kp G        &kp H                     &hrm_both_sides RIGHT_SHIFT J         &hrm_both_sides RIGHT_CONTROL K  &hrm_both_sides LEFT_ALT L  &hrm_both_sides RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
+&kp LEFT_SHIFT  &kp Z                       &kp X                       &kp C                      &kp V                         &kp B        &kp N                     &kp M                                 &kp COMMA                        &kp DOT                     &kp FSLH                             &kp RIGHT_SHIFT
+                                                                        &layer_hold_mods 4 ESCAPE  &mo 1                         &kp SPACE    &layer_hold_mods 3 ENTER  &sticky_shift_mod_layer 2 LEFT_SHIFT  &mo 5
             >;
         };
 
