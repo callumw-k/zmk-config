@@ -68,6 +68,15 @@
             hold-trigger-on-release;
             hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 41 40 39 38 37 36>;
         };
+
+        tap_dance_caps: tap_dance_caps {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_CAPS";
+            #binding-cells = <0>;
+            bindings = <&sticky_shift_mod_layer 2 RIGHT_SHIFT>, <&caps_word>;
+
+            tapping-term-ms = <150>;
+        };
     };
 
     combos {
@@ -89,10 +98,10 @@
 
         home_layer {
             bindings = <
-&kp TAB         &kp Q                 &kp W                 &kp E                      &kp R                                 &kp T        &kp Y                     &kp U                                  &kp I                       &kp O                  &kp P                           &kp BSPC
-&kp ESCAPE      &hrm_left LEFT_GUI A  &hrm_left LEFT_ALT S  &hrm_left LCTRL D          &hrm_left LEFT_SHIFT F                &kp G        &kp H                     &hrm_right RIGHT_SHIFT J               &hrm_right RIGHT_CONTROL K  &hrm_right LEFT_ALT L  &hrm_right RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
-&kp LEFT_SHIFT  &kp Z                 &kp X                 &kp C                      &kp V                                 &kp B        &kp N                     &kp M                                  &kp COMMA                   &kp DOT                &kp FSLH                        &kp RIGHT_SHIFT
-                                                            &layer_hold_mods 4 ESCAPE  &sticky_shift_mod_layer 1 LEFT_SHIFT  &kp SPACE    &layer_hold_mods 3 ENTER  &sticky_shift_mod_layer 2 RIGHT_SHIFT  &mo 5
+&kp TAB         &kp Q                 &kp W                 &kp E                      &kp R                                 &kp T        &kp Y                     &kp U                     &kp I                       &kp O                  &kp P                           &kp BSPC
+&kp ESCAPE      &hrm_left LEFT_GUI A  &hrm_left LEFT_ALT S  &hrm_left LCTRL D          &hrm_left LEFT_SHIFT F                &kp G        &kp H                     &hrm_right RIGHT_SHIFT J  &hrm_right RIGHT_CONTROL K  &hrm_right LEFT_ALT L  &hrm_right RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
+&kp LEFT_SHIFT  &kp Z                 &kp X                 &kp C                      &kp V                                 &kp B        &kp N                     &kp M                     &kp COMMA                   &kp DOT                &kp FSLH                        &kp RIGHT_SHIFT
+                                                            &layer_hold_mods 4 ESCAPE  &sticky_shift_mod_layer 1 LEFT_SHIFT  &kp SPACE    &layer_hold_mods 3 ENTER  &tap_dance_caps           &mo 5
             >;
         };
 
@@ -109,7 +118,7 @@
             bindings = <
 &none  &kp LEFT_BRACKET  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RIGHT_BRACKET    &none      &none      &none      &none         &none         &kp BACKSPACE
 &none  &kp SEMI          &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp EQUAL            &kp SPACE  &kp LSHFT  &kp LCTRL  &kp LEFT_ALT  &kp LEFT_GUI  &none
-&none  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none      &none      &none      &none         &none         &none
+&none  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none      &none      &kp COMMA  &kp DOT       &kp FSLH      &none
                                        &kp DOT       &kp NUMBER_0  &kp MINUS            &none      &none      &none
             >;
         };
