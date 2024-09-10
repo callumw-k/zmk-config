@@ -74,10 +74,10 @@
 
         home_layer {
             bindings = <
-&kp TAB         &kp Q                       &kp W                       &kp E                      &kp R                         &kp T        &kp Y                     &kp U                                 &kp I                            &kp O                       &kp P                                &kp BSPC
-&kp ESCAPE      &hrm_both_sides LEFT_GUI A  &hrm_both_sides LEFT_ALT S  &hrm_both_sides LCTRL D    &hrm_both_sides LEFT_SHIFT F  &kp G        &kp H                     &hrm_both_sides RIGHT_SHIFT J         &hrm_both_sides RIGHT_CONTROL K  &hrm_both_sides LEFT_ALT L  &hrm_both_sides RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
-&kp LEFT_SHIFT  &kp Z                       &kp X                       &kp C                      &kp V                         &kp B        &kp N                     &kp M                                 &kp COMMA                        &kp DOT                     &kp FSLH                             &kp RIGHT_SHIFT
-                                                                        &layer_hold_mods 5 ESCAPE  &mo 2                         &kp SPACE    &layer_hold_mods 4 ENTER  &sticky_shift_mod_layer 3 LEFT_SHIFT  &mo 6
+&kp TAB         &kp Q                       &kp W                       &kp E                      &kp R                                 &kp T        &kp Y                     &kp U                                  &kp I                            &kp O                       &kp P                                &kp BSPC
+&kp ESCAPE      &hrm_both_sides LEFT_GUI A  &hrm_both_sides LEFT_ALT S  &hrm_both_sides LCTRL D    &hrm_both_sides LEFT_SHIFT F          &kp G        &kp H                     &hrm_both_sides RIGHT_SHIFT J          &hrm_both_sides RIGHT_CONTROL K  &hrm_both_sides LEFT_ALT L  &hrm_both_sides RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
+&kp LEFT_SHIFT  &kp Z                       &kp X                       &kp C                      &kp V                                 &kp B        &kp N                     &kp M                                  &kp COMMA                        &kp DOT                     &kp FSLH                             &kp RIGHT_SHIFT
+                                                                        &layer_hold_mods 5 ESCAPE  &sticky_shift_mod_layer 2 LEFT_SHIFT  &kp SPACE    &layer_hold_mods 4 ENTER  &sticky_shift_mod_layer 3 RIGHT_SHIFT  &mo 6
             >;
         };
 
