@@ -40,7 +40,8 @@
             bindings = <&kp>;
             #binding-cells = <1>;
             quick-release;
-            release-after-ms = <2000>;
+            release-after-ms = <3000>;
+            ignore-modifiers;
         };
 
         sticky_shift_mod_layer: sticky_shift_mod_layer {
