@@ -121,6 +121,21 @@
             bindings = <&kp MINUS>;
             key-positions = <31 19>;
         };
+
+        combo_square_brackets {
+            bindings = <&kp LEFT_BRACKET>;
+            key-positions = <31 32>;
+        };
+
+        combo_right_brace {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <32 33>;
+        };
+
+        combo_equals {
+            bindings = <&kp EQUAL>;
+            key-positions = <28 16>;
+        };
     };
 
     keymap {
