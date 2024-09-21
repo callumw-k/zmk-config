@@ -106,6 +106,16 @@
             bindings = <&kp RIGHT_BRACE>;
             key-positions = <5 4>;
         };
+
+        combo_parenthesis {
+            bindings = <&kp LEFT_PARENTHESIS>;
+            key-positions = <20 21>;
+        };
+
+        combo_right_parenthesis {
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            key-positions = <21 22>;
+        };
     };
 
     keymap {
