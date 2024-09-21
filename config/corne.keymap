@@ -109,12 +109,12 @@
 
         combo_parenthesis {
             bindings = <&kp LEFT_PARENTHESIS>;
-            key-positions = <20 21>;
+            key-positions = <20 19>;
         };
 
         combo_right_parenthesis {
             bindings = <&kp RIGHT_PARENTHESIS>;
-            key-positions = <21 22>;
+            key-positions = <21 20>;
         };
 
         combo_dash {
