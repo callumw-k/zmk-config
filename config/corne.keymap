@@ -51,7 +51,7 @@
             bindings = <&mo>, <&instant_sticky_shift>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <125>;
+            tapping-term-ms = <150>;
             flavor = "tap-preferred";
         };
 
@@ -96,6 +96,16 @@
             bindings = <&caps_word>;
             key-positions = <37 40>;
         };
+
+        combo_left_brace {
+            bindings = <&kp LEFT_BRACE>;
+            key-positions = <1 2>;
+        };
+
+        combo_right_brace {
+            bindings = <&kp RIGHT_BRACE>;
+            key-positions = <5 4>;
+        };
     };
 
     keymap {
@@ -121,18 +131,18 @@
 
         num_layer {
             bindings = <
-&none  &kp LEFT_BRACKET  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RIGHT_BRACKET    &none      &none      &none      &none         &none         &kp BACKSPACE
-&none  &kp SEMI          &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp EQUAL            &kp SPACE  &kp LSHFT  &kp LCTRL  &kp LEFT_ALT  &kp LEFT_GUI  &none
-&none  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none      &none      &kp COMMA  &kp DOT       &kp FSLH      &none
+&none  &kp LEFT_BRACKET  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RIGHT_BRACKET    &none      &none      &none          &none             &none         &kp BACKSPACE
+&none  &kp SEMI          &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp EQUAL            &kp SPACE  &kp LSHFT  &kp LCTRL      &kp LEFT_ALT      &kp LEFT_GUI  &none
+&none  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none      &none      &kp LESS_THAN  &kp GREATER_THAN  &kp FSLH      &none
                                        &kp DOT       &kp NUMBER_0  &kp MINUS            &none      &none      &none
             >;
         };
 
         symbol_layer {
             bindings = <
-&none  &kp LEFT_BRACE  &kp AMPERSAND    &kp STAR              &kp LEFT_PARENTHESIS   &kp RIGHT_BRACE    &none      &none      &none      &none         &none         &kp BACKSPACE
-&none  &kp COLON       &kp DOLLAR       &kp PERCENT           &kp CARET              &kp PLUS           &kp SPACE  &kp LSHFT  &kp LCTRL  &kp LEFT_ALT  &kp LEFT_GUI  &none
-&none  &kp TILDE       &kp EXCLAMATION  &kp AT                &kp HASH               &kp PIPE           &none      &none      &none      &none         &none         &none
+&none  &kp LEFT_BRACE  &kp AMPERSAND    &kp STAR              &kp LEFT_PARENTHESIS   &kp RIGHT_BRACE    &none      &none      &none          &none             &none         &kp BACKSPACE
+&none  &kp COLON       &kp DOLLAR       &kp PERCENT           &kp CARET              &kp PLUS           &kp SPACE  &kp LSHFT  &kp LCTRL      &kp LEFT_ALT      &kp LEFT_GUI  &none
+&none  &kp TILDE       &kp EXCLAMATION  &kp AT                &kp HASH               &kp PIPE           &none      &none      &kp LESS_THAN  &kp GREATER_THAN  &none         &none
                                         &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp UNDER          &none      &none      &none
             >;
         };
