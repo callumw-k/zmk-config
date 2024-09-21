@@ -127,7 +127,7 @@
             key-positions = <31 32>;
         };
 
-        combo_right_brace {
+        combo_right_bracket {
             bindings = <&kp RIGHT_BRACKET>;
             key-positions = <32 33>;
         };
