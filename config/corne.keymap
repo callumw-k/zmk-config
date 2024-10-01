@@ -123,18 +123,28 @@
         };
 
         combo_square_brackets {
-            bindings = <&kp LEFT_BRACKET>;
+            bindings = <&kp LEFT_BRACE>;
             key-positions = <31 32>;
         };
 
         combo_right_bracket {
-            bindings = <&kp RIGHT_BRACKET>;
+            bindings = <&kp RIGHT_BRACE>;
             key-positions = <32 33>;
         };
 
         combo_equals {
             bindings = <&kp EQUAL>;
             key-positions = <28 16>;
+        };
+
+        left_bracket {
+            bindings = <&kp LEFT_BRACKET>;
+            key-positions = <7 8>;
+        };
+
+        right_bracket {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <8 9>;
         };
     };
 
