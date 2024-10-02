@@ -100,21 +100,25 @@
         combo_left_brace {
             bindings = <&kp LEFT_BRACE>;
             key-positions = <1 2>;
+            require-prior-idle-ms = <150>;
         };
 
         combo_right_brace {
             bindings = <&kp RIGHT_BRACE>;
             key-positions = <5 4>;
+            require-prior-idle-ms = <150>;
         };
 
         combo_parenthesis {
             bindings = <&kp LEFT_PARENTHESIS>;
             key-positions = <20 19>;
+            require-prior-idle-ms = <150>;
         };
 
         combo_right_parenthesis {
             bindings = <&kp RIGHT_PARENTHESIS>;
             key-positions = <21 20>;
+            require-prior-idle-ms = <150>;
         };
 
         combo_dash {
@@ -131,6 +135,7 @@
         combo_right_bracket {
             bindings = <&kp RIGHT_BRACE>;
             key-positions = <32 33>;
+            require-prior-idle-ms = <150>;
         };
 
         combo_equals {
@@ -141,6 +146,7 @@
         left_bracket {
             bindings = <&kp LEFT_BRACKET>;
             key-positions = <7 8>;
+            require-prior-idle-ms = <150>;
         };
 
         right_bracket {
