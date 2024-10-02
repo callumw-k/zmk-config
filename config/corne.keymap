@@ -125,6 +125,7 @@
         combo_square_brackets {
             bindings = <&kp LEFT_BRACE>;
             key-positions = <31 32>;
+            require-prior-idle-ms = <150>;
         };
 
         combo_right_bracket {
@@ -145,6 +146,7 @@
         right_bracket {
             bindings = <&kp RIGHT_BRACKET>;
             key-positions = <8 9>;
+            require-prior-idle-ms = <150>;
         };
     };
 
