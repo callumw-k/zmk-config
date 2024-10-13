@@ -34,8 +34,8 @@ ZMK_HOLD_TAP(hmr,
 )
 
 ZMK_LAYER(default_layer,
-    &kp TAB     &kp Q         &kp W         &kp E         &kp R         &kp T           &kp Y     &kp U         &kp I         &kp O         &kp P         &kp BSPC
-    &kp ESCAPE  &hrm_left LEFT_GUI A  &hrm_left LEFT_ALT S  &hrm_left LCTRL D  &hrm_left LEFT_SHIFT F  &kp G     &kp H         &hrm_right RIGHT_SHIFT J  &hrm_right RIGHT_CONTROL K  &hrm_right LEFT_ALT L  &hrm_right RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
-    &kp LEFT_SHIFT &kp Z    &kp X         &kp C         &kp V         &kp B           &kp N     &kp M         &kp COMMA     &kp DOT       &kp FSLH      &kp RIGHT_SHIFT
+    &kp TAB        &kp Q                 &kp W                 &kp E              &kp R                   &kp T           &kp Y     &kp U         &kp I         &kp O         &kp P         &kp BSPC
+    &kp ESCAPE     &hml LEFT_GUI A  &hml LEFT_ALT S  &hml LCTRL D  &hml LEFT_SHIFT F  &kp G     &kp H         &hmr RIGHT_SHIFT J  &hmr RIGHT_CONTROL K  &hmr LEFT_ALT L  &hmr RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
+    &kp LEFT_SHIFT &kp Z                 &kp X                 &kp C              &kp V         &kp B           &kp N     &kp M         &kp COMMA     &kp DOT       &kp FSLH      &kp RIGHT_SHIFT
     &none &none &none &none &none &none
 ); 
