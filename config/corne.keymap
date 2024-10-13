@@ -40,6 +40,37 @@ ZMK_HOLD_TAP(hmr,
     hold-trigger-on-release;
     bindings = <&kp>, <&kp>;
 )
+/* Custom behaviors */
+
+// tap: copy | double-tap: cut
+ZMK_TAP_DANCE(copy_cut, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp LC(INS)>, <&kp LC(X)>;
+)
+
+// tap: backspace | shift + tap: delete | hold: num layer
+ZMK_MOD_MORPH(bs_del_num,
+    bindings = <&lt NUM BSPC>, <&kp DEL>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// windows sleep macro
+ZMK_MACRO(win_sleep,
+    wait-ms = <100>;
+    tap-ms = <5>;
+    bindings = <&kp LG(X) &kp U &kp S>;
+)
+
+// euro sign
+ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)  // €
+
+// replace a/o/u/s with German umlauts when NAV and NUM are held jointly
+ZMK_CONDITIONAL_LAYER(ger, NAV NUM, GER)
+
+// combos
+ZMK_COMBO(sleep,    &win_sleep,  RT3 RT4, NAV)  // put Windows to sleep, only active on NAV layer
+ZMK_COMBO(copy_cut, &copy_cut,   LB2 LB3, ALL)  // copy on tap, cut on double-tap, active on all layers
+ZMK_COMBO(paste,    &kp LS(INS), LB1 LB2, ALL)  // paste, active on all layers
 
 
 
