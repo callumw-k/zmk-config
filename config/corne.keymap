@@ -11,6 +11,13 @@
 #include "zmk-helpers/key-labels/42.h"
 #include "zmk-helpers/unicode-chars/german.dtsi"
 
+#define ___ &trans
+
+#define DEF 0
+#define NAV 1
+#define NUM 2
+#define GER 3
+
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  // left hand
 
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 LM5 RB0 RB1 RB2 RB3 RB4 RB5  // right hand
@@ -33,6 +40,8 @@ ZMK_HOLD_TAP(hmr,
     hold-trigger-on-release;
     bindings = <&kp>, <&kp>;
 )
+
+
 
 ZMK_LAYER(default_layer,
      // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
