@@ -40,6 +40,7 @@ ZMK_HOLD_TAP(hmr,
     hold-trigger-on-release;
     bindings = <&kp>, <&kp>;
 )
+
 /* Custom behaviors */
 
 // tap: copy | double-tap: cut
