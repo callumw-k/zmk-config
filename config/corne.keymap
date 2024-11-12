@@ -87,9 +87,9 @@ ZMK_COMBO(paste,    &kp LS(INS), LB1 LB2, ALL)
 
 
 ZMK_LAYER(default_layer,
-    &kp TAB             &kp Q                 &kp W                 &kp E                               &kp R                                 &kp T         &kp Y                     &kp U                                &kp I                      &kp O                  &kp P                           &kp BSPC
-    &kp ESCAPE          &hml LEFT_GUI A  &hml LEFT_ALT S  &hml LCTRL D                   &hml LEFT_SHIFT F                &kp G         &kp H                     &hmr RIGHT_SHIFT J             &hmr RIGHT_CONTROL K  &hmr LEFT_ALT L  &hmr RIGHT_GUI SEMICOLON  &kp SINGLE_QUOTE
-    &kp LEFT_SHIFT      &kp Z                 &kp X                 &kp C                               &kp V                                 &kp B         &kp N                     &kp M                                &kp COMMA                   &kp DOT                &kp FSLH                        &kp RIGHT_SHIFT
+    &kp TAB         &kp Q             &kp W                 &kp E             &kp R               &kp T         &kp Y           &kp U                       &kp I                      &kp O                  &kp P                           &kp BSPC
+    &kp ESCAPE      &hml LEFT_GUI A   &hml LEFT_ALT S       &hml LCTRL D      &hml LEFT_SHIFT F   &kp G         &kp H           &hmr RIGHT_SHIFT J                   &hmr RIGHT_CONTROL K       &hmr LEFT_ALT L        &hmr RIGHT_GUI SEMICOLON        &kp SINGLE_QUOTE
+    &kp LEFT_SHIFT  &kp Z             &kp X                 &kp C             &kp V               &kp B         &kp N           &kp M                                &kp COMMA                  &kp DOT                &kp FSLH                        &kp RIGHT_SHIFT
                                                               &sticky_shift_mod_layer 4 LEFT_ALT  &sticky_shift_mod_layer 1 LEFT_SHIFT  &kp SPACE     &layer_hold_mods 3 ENTER  &sticky_shift_mod_layer 2 RIGHT_SHIFT &layer_hold_mods 5 ESCAPE
 )
 
