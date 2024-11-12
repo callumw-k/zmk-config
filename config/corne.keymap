@@ -41,13 +41,12 @@ ZMK_HOLD_TAP(hmr,
     bindings = <&kp>, <&kp>;
 )
 
-ZMK_HOLD_TAP(layer_hold_mods, (
-    flavor = "hold-preferred";
-    tapping-term-ms = <200>;
-    hold-trigger-key-positions = <KEYS_L THUMBS>;
-    hold-trigger-on-release;
+ZMK_HOLD_TAP(layer_hold_mods, 
     bindings = <&mo>, <&kp>;
-))
+    tapping-term-ms = <200>;
+    flavor = "hold-preferred";
+    require-prior-idle-ms = <130>;
+)
 
 ZMK_HOLD_TAP(sticky_shift_mod_layer, 
     flavor = "tap-preffered";
