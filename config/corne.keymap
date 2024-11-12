@@ -41,28 +41,29 @@ ZMK_HOLD_TAP(hmr,
     bindings = <&kp>, <&kp>;
 )
 
-ZMK_HOLD_TAP(layer_hold_mods,
+ZMK_HOLD_TAP(layer_hold_mods, (
     flavor = "hold-preferred";
     tapping-term-ms = <200>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
     hold-trigger-on-release;
     bindings = <&mo>, <&kp>;
+))
+
+ZMK_HOLD_TAP(sticky_shift_mod_layer,
+    flavor = "tap-preffered";
+    #binding-cells = <2>;
+    tapping-term-ms = <150>;
+    bindings = <&mo>, <&instant_stick_shift>;
 )
 
-ZMK_STICKY_KEY(instant_stick_shift,
+ZMK_STICKY_KEY(instant_stick_shift, (
     bindings = <&kp>;
     #binding-cells = <1>;
     quick-release;
     release-after-ms = <3000>;
     ignore-modifiers;
-)
+))
 
-ZMK_HOLD_TAP(sticky_shift_mod_layer,
-    bindings = <&mo>, <&instant_stick_shift>;
-    #binding-cells = <2>;
-    tapping-term-ms = <150>;
-    flavor = "tap-preffered";
-)
 
 ZMK_TAP_DANCE(copy_cut, 
     tapping-term-ms = <200>;
