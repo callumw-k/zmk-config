@@ -67,28 +67,6 @@ ZMK_STICKY_KEY(instant_stick_shift,
 )
 
 
-ZMK_TAP_DANCE(copy_cut, 
-    tapping-term-ms = <200>;
-    bindings = <&kp LC(INS)>, <&kp LC(X)>;
-)
-
-ZMK_MOD_MORPH(bs_del_num,
-    bindings = <&lt NUM BSPC>, <&kp DEL>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-)
-
-ZMK_MACRO(win_sleep,
-    wait-ms = <100>;
-    tap-ms = <5>;
-    bindings = <&kp LG(X) &kp U &kp S>;
-)
-
-ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)  
-
-ZMK_COMBO(copy_cut, &copy_cut,   LB2 LB3, ALL)  
-ZMK_COMBO(paste,    &kp LS(INS), LB1 LB2, ALL)  
-
-
 ZMK_LAYER(default_layer,
     &kp TAB         &kp Q             &kp W                 &kp E             &kp R               &kp T         &kp Y           &kp U                       &kp I                      &kp O                  &kp P                           &kp BSPC
     &kp ESCAPE      &hml LEFT_GUI A   &hml LEFT_ALT S       &hml LCTRL D      &hml LEFT_SHIFT F   &kp G         &kp H           &hmr RIGHT_SHIFT J          &hmr RIGHT_CONTROL K       &hmr LEFT_ALT L        &hmr RIGHT_GUI SEMICOLON        &kp SINGLE_QUOTE
