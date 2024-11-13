@@ -10,7 +10,6 @@
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/key-labels/42.h"
 #include "zmk-helpers/unicode-chars/german.dtsi"
-#include "combos.dtsi"
 
 #define ___ &trans
 
@@ -25,6 +24,8 @@
 
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 LM5 RB0 RB1 RB2 RB3 RB4 RB5  // right hand
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2  
+
+#include "combos.dtsi"
 
 ZMK_HOLD_TAP(hml,
     flavor = "balanced";
@@ -82,8 +83,6 @@ ZMK_MACRO(win_sleep,
 )
 
 ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)  
-
-ZMK_CONDITIONAL_LAYER(ger, NAV NUM, GER)
 
 ZMK_COMBO(copy_cut, &copy_cut,   LB2 LB3, ALL)  
 ZMK_COMBO(paste,    &kp LS(INS), LB1 LB2, ALL)  
