@@ -20,8 +20,8 @@ ZMK_COMBO(rpar,  &rpar_gt,     RM2 RM3,     DEF     NUM, COMBO_TERM_FAST, COMBO_
 ZMK_COMBO(left_paren,   &kp LEFT_PARENTHESIS,   RT1 RT2,  DEF, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(right_paren,  &kp RIGHT_PARENTHESIS,  RT2 RT3,  DEF, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 
-ZMK_COMBO(lbkt,  &kp opposite_bracket,           RB1 RB2,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rbkt,  &kp opposite_bracket_right,     RB2 RB3,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(lbkt,  &opposite_bracket,           RB1 RB2,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(rbkt,  &opposite_bracket_right,     RB2 RB3,     DEF     NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 
 ZMK_COMBO(left_bracket,  &kp LEFT_BRACKET,   RB1 RB2,  DEF, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(right_bracket, &kp RIGHT_BRACKET,  RB2 RB3,  DEF, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
