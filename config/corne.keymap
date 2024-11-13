@@ -47,6 +47,7 @@
         hold-trigger-on-release; \
     )
 
+
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  
 
@@ -70,7 +71,6 @@ ZMK_HOLD_TAP(layer_hold_mods,
     require-prior-idle-ms = <130>;
 )
 
-
 ZMK_HOLD_TAP(sticky_shift_mod_layer, 
     flavor = "tap-preferred";
     tapping-term-ms = <150>;
@@ -78,11 +78,11 @@ ZMK_HOLD_TAP(sticky_shift_mod_layer,
 )
 
 
-
 ZMK_MOD_MORPH(smart_shft,
     bindings = <&sk LSHFT>, <&caps_word>;
     mods = <(MOD_LSFT)>;
 )
+
 
 
 ZMK_TRI_STATE(swapper,
@@ -106,6 +106,7 @@ ZMK_MOD_MORPH(bs_del,
 // - Fancy space - //
 
 SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
+
 
 ZMK_MACRO(dot_spc,
     wait-ms = <0>;
