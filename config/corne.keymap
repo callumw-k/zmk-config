@@ -53,6 +53,11 @@ ZMK_HOLD_TAP(layer_hold_mods,
     require-prior-idle-ms = <130>;
 )
 
+ZMK_TAP_DANCE(alt_hold,
+  bindings = <&mo 4>, <&kp LEFT_ALT>;
+  tapping-term-ms = <200>;
+)
+
 ZMK_HOLD_TAP(sticky_shift_mod_layer, 
     flavor = "tap-preferred";
     tapping-term-ms = <150>;
@@ -66,6 +71,19 @@ ZMK_STICKY_KEY(instant_stick_shift,
     bindings = <&kp>;
 )
 
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2) \
+    ZMK_MOD_MORPH(NAME, \
+        mods = <(MOD_L ## MOD|MOD_R ## MOD)>; \
+        bindings = <BINDING1>, <BINDING2>; \
+)
+
+
+
+SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
+
+// tap: left/right parenthesis | shft + tap: less-than/greater-than
+SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
+SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
 ZMK_LAYER(default_layer,
     &kp TAB         &kp Q             &kp W                 &kp E             &kp R               &kp T         &kp Y           &kp U                       &kp I                      &kp O                  &kp P                           &kp BSPC
