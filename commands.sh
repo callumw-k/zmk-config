@@ -24,9 +24,14 @@ if [ "$QUICK" = false ]; then
     # Stop and remove the Docker container
     docker container stop zmk-build-container
     docker container rm zmk-build-container
+    docker compose up -d --build
+else 
+
+    docker compose up -d
 fi
 
-docker compose up -d --build
+
+
 
 file_exists_in_container() {
     docker exec zmk-build-container test -f "$1"
@@ -52,6 +57,9 @@ docker exec zmk-build-container bash -c '
     west build -b nice_nano_v2 -- \
     -DSHIELD=corne_left \
     -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" \
-    -DZMK_CONFIG=/workspaces/zmk/zmk-config/config
+    -DZMK_CONFIG=/workspaces/zmk/zmk-config
 '
-# west build -b nice_nano_v2 -- -DSHIELD=vendor_shield -DZMK_EXTRA_MODULES=/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state -DZMK_CONFIG=/workspaces/zmk/zmk-config/config
+
+cp ./zmk/app/build/zephyr/zmk.uf2 .
+
+# west build -b nice_nano_v2 -- -DSHIELD=vendor_shield -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" -DZMK_CONFIG=/workspaces/zmk/zmk-config
