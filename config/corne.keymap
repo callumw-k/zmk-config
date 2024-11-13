@@ -87,12 +87,12 @@ ZMK_TRI_STATE(swapper_mac,
 
 
 ZMK_MOD_MORPH(opposite_bracket,
-  bindings = <&kp LEFT_BRACE>, <&kp LEFT_BRACKET>
+  bindings = <&kp LEFT_BRACE>, <&kp LEFT_BRACKET>;
   mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
 ZMK_MOD_MORPH(opposite_bracket_right,
-  bindings = <&kp RIGHT_BRACE>, <&kp RIGHT_BRACKET>
+  bindings = <&kp RIGHT_BRACE>, <&kp RIGHT_BRACKET>;
   mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
