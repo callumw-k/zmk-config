@@ -71,7 +71,7 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 //     hold-trigger-key-positions = <KEYS_L THUMBS>;
 //     hold-trigger-on-release;
 //     bindings = <&kp>, <&kp>;
-)
+// )
 
 ZMK_HOLD_TAP(layer_hold_mods, 
     bindings = <&mo>, <&kp>;
