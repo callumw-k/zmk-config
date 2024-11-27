@@ -84,7 +84,6 @@ ZMK_MOD_MORPH(smart_shft,
 )
 
 
-
 ZMK_TRI_STATE(swapper,
     bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
     ignored-key-positions = <LT2>;
@@ -118,16 +117,15 @@ SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
-
 ZMK_LAYER(default_layer,
-    &kp TAB         &kp Q             &kp W                 &kp E             &kp R               &kp T         &kp Y           &kp U                       &kp I                      &kp O                  &kp P                           &bs_del
+    &kp TAB         &kp Q             &kp W                 &kp E             &kp R               &kp T         &kp Y           &kp U                       &kp I                      &kp O                  &kp P                           &kp BACKSPACE
     &kp ESCAPE      &hml LEFT_GUI A   &hml LEFT_ALT S       &hml LCTRL D      &hml LEFT_SHIFT F   &kp G         &kp H           &hmr RIGHT_SHIFT J          &hmr RIGHT_CONTROL K       &hmr LEFT_ALT L        &hmr RIGHT_GUI SEMICOLON        &kp SINGLE_QUOTE
     &kp LEFT_SHIFT  &kp Z             &kp X                 &kp C             &kp V               &kp B         &kp N           &kp M                       &kp COMMA                  &kp DOT                &kp FSLH                        &kp RIGHT_SHIFT
-                                      &layer_hold_mods 4 LEFT_ALT      &sticky_shift_mod_layer 1 LEFT_SHIFT        &spc_morph     &layer_hold_mods 3 ENTER                          &sticky_shift_mod_layer 2 RIGHT_SHIFT                 &layer_hold_mods 5 ESCAPE
+                                      &layer_hold_mods 4 LEFT_ALT      &sticky_shift_mod_layer 1 LEFT_SHIFT        &kp SPACE     &layer_hold_mods 3 ENTER                          &sticky_shift_mod_layer 2 RIGHT_SHIFT                 &layer_hold_mods 5 ESCAPE
 )
 
 ZMK_LAYER(nav_layer,
-    &none  &none         &none         &none              &none            &none    &kp C_AC_REDO   &kp C_AC_PASTE  &kp C_AC_COPY  &kp C_AC_CUT  &kp C_AC_UNDO     &none
+    &swapper  &none         &none         &none              &none            &none    &kp C_AC_REDO   &kp C_AC_PASTE  &kp C_AC_COPY  &kp C_AC_CUT  &kp C_AC_UNDO     &none
     &none  &kp LEFT_GUI  &kp LEFT_ALT  &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &none    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT     &swapper          &swapper_mac
     &none  &none         &none         &none              &none            &none    &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP    &kp END       &kp INSERT        &none
                                        &none              &none            &none    &kp ENTER       &kp BACKSPACE   &kp DELETE
