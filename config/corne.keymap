@@ -3,7 +3,6 @@
 *
 * SPDX-License-Identifier: MIT
 */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
@@ -89,6 +88,11 @@ ZMK_TRI_STATE(swapper,
     ignored-key-positions = <LT2>;
 )
 
+ZMK_TRI_STATE(swapper_shift,
+    bindings = <&kt LALT>, <&kp LS(TAB)>, <&kt LALT>;
+    ignored-key-positions = <LT2>;
+)
+
 ZMK_TRI_STATE(swapper_mac,
     bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
     ignored-key-positions = <LT2>;
@@ -106,16 +110,20 @@ ZMK_MOD_MORPH(bs_del,
 
 SIMPLE_MORPH(spc_morph, SFT, &kp SPACE, &dot_spc)
 
-
 ZMK_MACRO(dot_spc,
     wait-ms = <0>;
     tap-ms = <5>;
     bindings = <&kp DOT &kp SPACE &sk LSHFT>;
 )
 
+
+
 SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
+
+#define desk_left &kp LG(LC(LEFT)) 
+#define desk_right &kp LG(LC(RIGHT)) 
 
 ZMK_LAYER(default_layer,
     &kp TAB         &kp Q             &kp W                 &kp E             &kp R               &kp T         &kp Y           &kp U                       &kp I                      &kp O                  &kp P                           &kp BACKSPACE
@@ -125,17 +133,18 @@ ZMK_LAYER(default_layer,
 )
 
 ZMK_LAYER(nav_layer,
-    &swapper  &none         &none         &none              &none            &none    &kp C_AC_REDO   &kp C_AC_PASTE  &kp C_AC_COPY  &kp C_AC_CUT  &kp C_AC_UNDO     &none
-    &none  &kp LEFT_GUI  &kp LEFT_ALT  &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &none    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT     &swapper          &swapper_mac
-    &none  &none         &none         &none              &none            &none    &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP    &kp END       &kp INSERT        &none
-                                       &none              &none            &none    &kp ENTER       &kp BACKSPACE   &kp DELETE
+    &none  &none         &swapper         &none              &swapper_shift            &none    &kp C_AC_REDO   &kp C_AC_PASTE  &kp C_AC_COPY  &kp C_AC_CUT  &kp C_AC_UNDO     &none
+    &none  &kp LEFT_GUI  &kp LEFT_ALT     &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &none    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT     &swapper          &swapper_mac
+    &none  &none         desk_left        &none              desk_left            &none    &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP    &kp END       &kp INSERT        &none
+
+                                           ___       ___          ___ &kp ENTER      &kp BACKSPACE &kp DELETE
 )
 
 ZMK_LAYER(num_layer,
-    &none  &kp LEFT_BRACKET  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp RIGHT_BRACKET    &none      &none      &none          &none             &none         &kp BACKSPACE
-    &none  &kp SEMI          &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp EQUAL            &kp SPACE  &kp LSHFT  &kp LCTRL      &kp LEFT_ALT      &kp LEFT_GUI  &none
-    &none  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none      &none      &kp LESS_THAN  &kp GREATER_THAN  &kp FSLH      &none
-                                           &kp DOT       &kp NUMBER_0  &kp MINUS            &none      &none      &none
+    &none  &none  &swapper  &kp MINUS  &swapper_shift  &none    &none      &none      &none          &none             &none         &kp BACKSPACE
+    &none  &kp NUMBER_1          &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5            &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8      &kp NUMBER_9      &kp NUMBER_0  &none
+    &none  &kp GRAVE         desk_left  &none  desk_right  &kp BACKSLASH        &none      &none      &kp LESS_THAN  &kp GREATER_THAN  &kp FSLH      &none
+                                           &kp DOT       &kp MINUS          &kp SPACE      &none      &none &none
 )
 
 ZMK_LAYER(symbol_layer,
