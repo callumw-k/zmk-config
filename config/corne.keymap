@@ -129,22 +129,21 @@ ZMK_LAYER(default_layer,
     &kp TAB         &kp Q             &kp W                 &kp E             &kp R               &kp T         &kp Y           &kp U                       &kp I                      &kp O                  &kp P                           &kp BACKSPACE
     &kp ESCAPE      &hml LEFT_GUI A   &hml LEFT_ALT S       &hml LCTRL D      &hml LEFT_SHIFT F   &kp G         &kp H           &hmr RIGHT_SHIFT J          &hmr RIGHT_CONTROL K       &hmr LEFT_ALT L        &hmr RIGHT_GUI SEMICOLON        &kp SINGLE_QUOTE
     &kp LEFT_SHIFT  &kp Z             &kp X                 &kp C             &kp V               &kp B         &kp N           &kp M                       &kp COMMA                  &kp DOT                &kp FSLH                        &kp RIGHT_SHIFT
-                                      &layer_hold_mods 4 LEFT_ALT      &sticky_shift_mod_layer 1 LEFT_SHIFT  &kp SPACE     &layer_hold_mods 3 ENTER                          &sticky_shift_mod_layer 2 RIGHT_SHIFT                &layer_hold_mods 5 ESCAPE
+                                      &layer_hold_mods 4 LEFT_ALT             &sticky_shift_mod_layer 1 LEFT_SHIFT  &kp SPACE     &layer_hold_mods 3 ENTER                          &sticky_shift_mod_layer 2 RIGHT_SHIFT                &layer_hold_mods 5 ESCAPE
 )
 
 ZMK_LAYER(nav_layer,
-    &none  &none         &swapper         &none              &swapper_shift            &none    &kp C_AC_REDO   &kp C_AC_PASTE  &kp C_AC_COPY  &kp C_AC_CUT  &kp C_AC_UNDO     &none
-    &none  &kp LEFT_GUI  &kp LEFT_ALT     &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &none    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT     &swapper          &swapper_mac
-    &none  &none         desk_left        &none              desk_left            &none    &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP    &kp END       &kp INSERT        &none
-
-                                           ___       ___          ___ &kp ENTER      &kp BACKSPACE &kp DELETE
+    &none  &none         &swapper         &none              &swapper_shift            &none      &kp C_AC_REDO   &kp C_AC_PASTE  &kp C_AC_COPY  &kp C_AC_CUT  &kp C_AC_UNDO     &none
+    &none  &kp LEFT_GUI  &kp LEFT_ALT     &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &none               &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT     &swapper          &swapper_mac
+    &none  &none         desk_left        &none              desk_right            &none           &kp HOME        &kp PAGE_DOWN   &kp PAGE_UP    &kp END       &kp INSERT        &none
+                                           ___       ___                     ___                  &kp ENTER  &kp BACKSPACE &kp DELETE
 )
 
 ZMK_LAYER(num_layer,
-    &none  &none  &swapper  &kp MINUS  &swapper_shift  &none    &none      &none      &none          &none             &none         &kp BACKSPACE
-    &none  &kp NUMBER_1          &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5            &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8      &kp NUMBER_9      &kp NUMBER_0  &none
-    &none  &kp GRAVE         desk_left  &none  desk_right  &kp BACKSLASH        &none      &none      &kp LESS_THAN  &kp GREATER_THAN  &kp FSLH      &none
-                                           &kp DOT       &kp MINUS          &kp SPACE      &none      &none &none
+    &none  &none          &kp NUMBER_7    &kp NUMBER_8  &kp NUMBER_9   &none              &none         &none           &none              &none             &none         &kp BACKSPACE
+    &none  &kp NUMBER_0   &kp NUMBER_4    &kp NUMBER_5  &kp NUMBER_6   &kp BACKSLASH      &none         &kp LEFT_SHIFT    &kp LEFT_CONTROL       &kp   LEFT_ALT    &kp LEFT_GUI  &none
+    &none  &kp GRAVE      &kp NUMBER_1    &kp NUMBER_2  &kp NUMBER_3   &none               &none         &none           &kp LESS_THAN      &kp GREATER_THAN  &kp FSLH      &none
+                                          &kp DOT       &kp MINUS      &kp SPACE          &none         &none           &none
 )
 
 ZMK_LAYER(symbol_layer,
@@ -157,7 +156,7 @@ ZMK_LAYER(symbol_layer,
 ZMK_LAYER(media_layer,
     &none  &none         &none     &none      &none           &none    &none           &to 0              &to 0            &none         &none  &none
     &none  &kp LEFT_GUI  &kp LALT  &kp LCTRL  &kp LEFT_SHIFT  &none    &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT    &none  &none
-    &none  &none         &none     &none      &none           &none    &none           &bt BT_SEL 0       &bt BT_SEL 1     &bt BT_SEL 2  &none  &none
+    &none  &none         &none     &none      &none           &none    &none           &bt BT_SEL 0       &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_CLR  &none
                                    &none      &none           &none    &kp C_STOP      &kp C_PLAY_PAUSE   &kp C_MUTE
 )
 

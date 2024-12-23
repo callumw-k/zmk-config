@@ -3,12 +3,9 @@ services:
     container_name: zmk-build-container
     tty: true
     build:
-      context: ./zmk/.devcontainer
-      dockerfile: Dockerfile
-    working_dir: /workspaces/zmk
+      dockerfile: ./dockerfiles/Dockerfile
+      context: .
     ports:
       - 3000:3000
     volumes:
-      - ./zmk:/workspaces/zmk
-      - $ROOT_DIR/config:/workspaces/zmk/zmk-config
-      - $ROOT_DIR/modules:/workspaces/zmk/zmk-modules
+      - $ROOT_DIR/build:/workspaces/zmk/app/build/zephyr
