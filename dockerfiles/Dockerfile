@@ -5,7 +5,7 @@ COPY ./dockerfiles/.bashrc ~/.bashrc
 
 WORKDIR /workspaces/zmk
 
-RUN git clone --recurse-submodules https://github.com/zmkfirmware/zmk.git .
+RUN git clone https://github.com/zmkfirmware/zmk.git .
 
 RUN west init -l app/ && west update
 
