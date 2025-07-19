@@ -32,25 +32,8 @@ fi
 
 
 
-# file_exists_in_container() {
-#     docker exec zmk-build-container test -f "$1"
-# }
-#
-# if file_exists_in_container /workspaces/zmk/.west/config; then
-#     echo "Config exists inside container, skipping 'west init'"
-# else
-#     echo "Running 'west init -l app/' inside container"
-#     docker exec zmk-build-container west init -l app/
-# fi
-
-# if [ "$QUICK" = false ]; then
-#     echo "Running 'west update' inside container"
-#     docker exec zmk-build-container west update
-# else
-#     echo "Skipping 'west update'"
-# fi
-
 echo "Building the application inside container"
+
 docker exec zmk-build-container bash -c '
     cd app/ && \
     west build -b nice_nano_v2 -- \
