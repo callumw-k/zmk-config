@@ -8,4 +8,4 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - $ROOT_DIR/build:/workspaces/zmk/app/build/zephyr
+      - ~/Documents/projects/keebs/zmk-config-personal/build:/workspaces/zmk/app/build/zephyr
