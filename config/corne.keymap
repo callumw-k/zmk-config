@@ -171,8 +171,8 @@ ZMK_LAYER(function_layer,
 )
 
 ZMK_LAYER(virtual_desktop_layer,
-    &none          &kp PRINTSCREEN  &kp F7     &kp F8           &kp F9         &kp F12         &none      &none            &none              &none          &none          &none
-    &none          desk_left    &none        desk_right   &none            &kp SPACE       &kp RIGHT_SHIFT  &kp RIGHT_CONTROL  &kp RIGHT_ALT  &kp RIGHT_GUI  &none
-    &kp LC(F1)   &kp LC(F2)       &kp LC(F3) &kp LC(F4)       &kp LC(F5)     &kp LC(6)       &none      &none            &none              &none          &none          &none
+    &none       &kp PRINTSCREEN  &kp F7     &kp F8           &kp F9         &kp F12         &none      &none            &none              &none          &none          &none
+    &none       &none       desk_left        &none   desk_right            &none       &none &kp RIGHT_SHIFT  &kp RIGHT_CONTROL  &kp RIGHT_ALT  &kp RIGHT_GUI  &none
+    &kp LC(F1)   &kp LC(F2)       &kp LC(F3) &kp LC(F4)       &kp LC(F5)     &kp LC(F6)               &none      &none            &none              &none          &none          &none
                             &none   &kp LEFT_ALT  &kp SPACE              &none      &none            &none
 )
