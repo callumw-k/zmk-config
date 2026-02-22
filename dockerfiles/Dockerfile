@@ -1,4 +1,4 @@
-FROM docker.io/zmkfirmware/zmk-build-arm:3.5
+FROM docker.io/zmkfirmware/zmk-build-arm:4.1-branch
 
 
 COPY ./dockerfiles/.bashrc ~/.bashrc
