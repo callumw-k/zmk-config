@@ -26,13 +26,15 @@ docker compose up -d --build
 
 echo "Building the application inside container"
 
-# docker exec zmk-build-container bash -c '
-#     cd app/ && \
-#     west build -b nice_nano_v2 -- \
-#     -DSHIELD=corne_left \
-#     -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" \
-#     -DZMK_CONFIG=/workspaces/zmk/zmk-config
-# '
+docker exec zmk-build-container bash -c '
+    cd app/ && \
+    west build --pristine -b nice_nano_v2 -- \
+    -DSHIELD=corne_left \
+    -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" \
+    -DZMK_CONFIG=/workspaces/zmk/zmk-config
+'
+
+cp ./build/zmk.uf2 ./zmk_left.uf2
 
 docker exec zmk-build-container bash -c '
     cd app/ && \
@@ -42,7 +44,7 @@ docker exec zmk-build-container bash -c '
     -DZMK_CONFIG=/workspaces/zmk/zmk-config
 '
 
-cp ./build/zmk.uf2 .
+cp ./build/zmk.uf2 ./zmk_right.uf2
 
 docker container stop zmk-build-container
 docker container rm zmk-build-container
