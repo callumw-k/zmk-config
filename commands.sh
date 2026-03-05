@@ -19,32 +19,31 @@ for dir in ./modules/*/; do
     fi
 done
 
-docker compose build --no-cache
+docker compose build 
 docker compose up -d
 
 echo "Building the application inside container"
 
 docker exec zmk-build-container bash -c '
     cd app/ && \
-    west build -b nice_nano_v2 -- \
+    west build -d build/left -b nice_nano_v2 -- \
     -DSHIELD=corne_left \
     -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" \
     -DZMK_CONFIG=/workspaces/zmk/zmk-config
 '
 
-cp ./build/zmk.uf2 ./zmk_left.uf2
+docker cp zmk-build-container:/workspaces/zmk/app/build/left/zephyr/zmk.uf2 ./zmk_left.uf2
+
 
 docker exec zmk-build-container bash -c '
     cd app/ && \
-    west build --pristine -b nice_nano_v2 -- \
+    west build -d build/right -p -b nice_nano_v2 -- \
     -DSHIELD=corne_right \
     -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" \
     -DZMK_CONFIG=/workspaces/zmk/zmk-config
 '
 
-cp ./build/zmk.uf2 ./zmk_right.uf2
+docker cp zmk-build-container:/workspaces/zmk/app/build/right/zephyr/zmk.uf2 ./zmk_right.uf2
 
 docker container stop zmk-build-container
 docker container rm zmk-build-container
-
-# west build -b nice_nano_v2 -- -DSHIELD=vendor_shield -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" -DZMK_CONFIG=/workspaces/zmk/zmk-config

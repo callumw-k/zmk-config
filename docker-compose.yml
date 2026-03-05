@@ -7,5 +7,3 @@ services:
       context: .
     ports:
       - 3000:3000
-    volumes:
-      - ~/Documents/projects/keebs/zmk-config-personal/build:/workspaces/zmk/app/build/zephyr
