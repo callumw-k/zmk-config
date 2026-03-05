@@ -19,16 +19,14 @@ for dir in ./modules/*/; do
     fi
 done
 
-docker compose up -d --build
-
-
-
+docker compose build --no-cache
+docker compose up -d
 
 echo "Building the application inside container"
 
 docker exec zmk-build-container bash -c '
     cd app/ && \
-    west build --pristine -b nice_nano_v2 -- \
+    west build -b nice_nano_v2 -- \
     -DSHIELD=corne_left \
     -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" \
     -DZMK_CONFIG=/workspaces/zmk/zmk-config
