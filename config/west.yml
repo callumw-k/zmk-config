@@ -10,13 +10,14 @@ manifest:
     - name: zmk
       remote: zmkfirmware
       revision: v0.3
+      import: app/west.yml
 
     - name: zmk-helpers
       remote: urob
-      revision: main
+      revision: v0.3
 
     - name: zmk-tri-state
       remote: dhruvinsh
-      revision: main
+      revision: v0.3
   self:
     path: config
