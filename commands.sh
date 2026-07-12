@@ -19,7 +19,7 @@ for dir in ./modules/*/; do
     fi
 done
 
-docker compose build
+docker compose build --no-cache
 docker compose up -d
 
 echo "Building the application inside container"
@@ -43,11 +43,6 @@ docker exec zmk-build-container bash -c '
 '
 
 docker cp zmk-build-container:/workspaces/zmk/app/build/right/zephyr/zmk.uf2 ./zmk_right.uf2
-
-echo "ZMK version:"
-docker exec zmk-build-container bash -c 'git -C /workspaces/zmk describe --tags'
-echo "Right shield config:"
-docker exec zmk-build-container bash -c 'grep CONFIG_SHIELD /workspaces/zmk/app/build/right/zephyr/.config'
 
 docker container stop zmk-build-container
 docker container rm zmk-build-container
