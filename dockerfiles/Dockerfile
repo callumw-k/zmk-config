@@ -1,14 +1,11 @@
 FROM docker.io/zmkfirmware/zmk-build-arm:3.5
 
-
 COPY ./dockerfiles/.bashrc ~/.bashrc
 
 WORKDIR /workspaces/zmk
 
-RUN git clone https://github.com/zmkfirmware/zmk.git . && git checkout v0.3
+COPY ./config/west.yml ./config/west.yml
 
-RUN west init -l app/ && west update
+RUN west init -l config/ && west update
 
-COPY ./config zmk-config
-COPY ./modules zmk-modules
-
+COPY ./config ./config

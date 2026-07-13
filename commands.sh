@@ -1,48 +1,40 @@
 #/bin/bash
 
-QUICK=false
-for arg in "$@"; do
-    if [ "$arg" == "--quick" ]; then
-        QUICK=true
-        echo "Quick mode enabled: Skipping git pull, Docker stop/rm, and west update."
-    fi
-done
-
-for dir in ./modules/*/; do
-    # Check if the directory is a Git repository
-    if [ -d "$dir/.git" ]; then
-        echo "Updating repository in $dir"
-        # Navigate to the repository directory and pull the latest changes
-        git -C "$dir" pull
-    else
-        echo "Skipping $dir — not a Git repository."
-    fi
-done
-
-docker compose build --no-cache
+docker compose build
 docker compose up -d
 
 echo "Building the application inside container"
 
 docker exec zmk-build-container bash -c '
-    cd app/ && \
+    cd zmk/app/ && \
     west build -d build/left -b nice_nano_v2 -- \
     -DSHIELD=corne_left \
-    -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" \
-    -DZMK_CONFIG=/workspaces/zmk/zmk-config
-'
-
-docker cp zmk-build-container:/workspaces/zmk/app/build/left/zephyr/zmk.uf2 ./zmk_left.uf2
+    -DZMK_CONFIG=/workspaces/zmk/config \
+    -DZephyr_DIR=/workspaces/zmk/zephyr/share/zephyr-package/cmake
+' &
+LEFT_PID=$!
 
 docker exec zmk-build-container bash -c '
-    cd app/ && \
+    cd zmk/app/ && \
     west build -d build/right -p -b nice_nano_v2 -- \
     -DSHIELD=corne_right \
-    -DZMK_EXTRA_MODULES="/workspaces/zmk/zmk-modules/zmk-helpers;/workspaces/zmk/zmk-modules/zmk-tri-state" \
-    -DZMK_CONFIG=/workspaces/zmk/zmk-config
-'
+    -DZMK_CONFIG=/workspaces/zmk/config \
+    -DZephyr_DIR=/workspaces/zmk/zephyr/share/zephyr-package/cmake
+' &
+RIGHT_PID=$!
 
-docker cp zmk-build-container:/workspaces/zmk/app/build/right/zephyr/zmk.uf2 ./zmk_right.uf2
+wait $LEFT_PID
+LEFT_STATUS=$?
+wait $RIGHT_PID
+RIGHT_STATUS=$?
 
-docker container stop zmk-build-container
-docker container rm zmk-build-container
+if [ $LEFT_STATUS -ne 0 ] || [ $RIGHT_STATUS -ne 0 ]; then
+    echo "Build failed (left: $LEFT_STATUS, right: $RIGHT_STATUS)"
+    docker container rm -f zmk-build-container
+    exit 1
+fi
+
+docker cp zmk-build-container:/workspaces/zmk/zmk/app/build/left/zephyr/zmk.uf2 ./zmk_left.uf2
+docker cp zmk-build-container:/workspaces/zmk/zmk/app/build/right/zephyr/zmk.uf2 ./zmk_right.uf2
+
+docker container rm -f zmk-build-container
