@@ -8,44 +8,28 @@
 #include <dt-bindings/zmk/keys.h>
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/key-labels/42.h"
-#include "zmk-helpers/unicode-chars/german.dtsi"
-/* #include "power.dtsi" */
 
 #define ___ &trans
 
 #define DEF 0
 #define NAV 1
 #define NUM 2
-#define SYM 3
-#define MED 4
-#define FNC 5
-#define VDP 6
+#define MED 3
+#define FNC 4
+#define VDP 5
+#define SYM 6
 
 #define QUICK_TAP_MS 175
 
-
-&caps_word {  
-    /delete-property/ ignore-modifiers;
-};
 
 &sk {  
     release-after-ms = <1500>;  
     quick-release;             
 };
 
-&sl { 
-  ignore-modifiers;
-};
-
-&lt {
-  flavor = "balanced";
-  tapping-term-ms = <200>;
-  quick-tap-ms = <QUICK_TAP_MS>;
-};
-
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  
 
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 LM5 RB0 RB1 RB2 RB3 RB4 RB5 
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5 
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2  
 
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
@@ -76,45 +60,54 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
         bindings = <BINDING1>, <BINDING2>; \
 )
 
-ZMK_HOLD_TAP(space_tap_mod, 
-    bindings = <&mo>, <&kp>;
-    tapping-term-ms = <180>;
-    flavor = "tap-preferred";
-)
-
-ZMK_HOLD_TAP(layer_hold_mods, 
-    bindings = <&mo>, <&kp>;
+&lt {
+    flavor = "balanced";
     tapping-term-ms = <200>;
-    flavor = "hold-preferred";
-    require-prior-idle-ms = <130>;
-)
+    quick-tap-ms = <QUICK_TAP_MS>;
+};
 
-ZMK_HOLD_TAP(sticky_shift_mod_layer, 
-    flavor = "tap-preferred";
+// No quick-tap: the tap is a sticky mod, so there is nothing to repeat, and it would only
+// forbid the layer on a re-press within the window.
+ZMK_HOLD_TAP(sticky_shift_mod_layer,
+    flavor = "balanced";
     tapping-term-ms = <150>;
     bindings = <&mo>, <&sk>;
 )
 
-
-ZMK_MOD_MORPH(smart_shft,
-    bindings = <&sk LSHFT>, <&caps_word>;
-    mods = <(MOD_LSFT)>;
+// tap-preferred, unlike the other thumbs: under balanced a space-then-letter roll
+// resolves as a hold and the space vanishes into the layer.
+ZMK_HOLD_TAP(space_layer,
+    flavor = "tap-preferred";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&mo>, <&kp>;
 )
 
+// Explicit on/off rather than &kt flip: each tri-state fires its own start binding, so
+// pressing swapper_shift while swapper already holds Alt would flip Alt off.
+/ {
+    behaviors {
+        kt_on: kt_on {
+            compatible = "zmk,behavior-key-toggle";
+            #binding-cells = <1>;
+            toggle-mode = "on";
+        };
+        kt_off: kt_off {
+            compatible = "zmk,behavior-key-toggle";
+            #binding-cells = <1>;
+            toggle-mode = "off";
+        };
+    };
+};
 
 ZMK_TRI_STATE(swapper,
-    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
-    ignored-key-positions = <LT2>;
+    bindings = <&kt_on LALT>, <&kp TAB>, <&kt_off LALT>;
+    ignored-key-positions = <LT3 LT1>;
 )
 
 ZMK_TRI_STATE(swapper_shift,
-    bindings = <&kt LALT>, <&kp LS(TAB)>, <&kt LALT>;
-    ignored-key-positions = <LT2>;
-)
-
-ZMK_TRI_STATE(swapper_mac,
-    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-    ignored-key-positions = <LT2>;
+    bindings = <&kt_on LALT>, <&kp LS(TAB)>, <&kt_off LALT>;
+    ignored-key-positions = <LT3 LT1>;
 )
 
 ZMK_BEHAVIOR(move_and_switch_to_desktop, macro,
@@ -124,12 +117,40 @@ ZMK_BEHAVIOR(move_and_switch_to_desktop, macro,
 
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
-
 SIMPLE_MORPH(shift_brace_lt, SFT, &kp LPAR, &kp LEFT_BRACE)
-SIMPLE_MORPH(shift_brace_rt, SFT, &kp RPAR, &kp RIGHT_BRACE)
 
-#define desk_left &kp LG(LC(LEFT)) 
-#define desk_right &kp LG(LC(RIGHT)) 
+// PLUS is LS(EQUAL), so Ctrl+plus reaches the host as Ctrl+Shift+Equal and apps that
+// bind only Ctrl+= for zoom miss it. Under Ctrl send the bare EQUAL instead. keep-mods
+// stops the morph masking the modifier that triggered it, so Ctrl still arrives. The Mac
+// swaps Ctrl and Cmd for this keyboard, so the same branch covers Cmd+= there.
+ZMK_MOD_MORPH(plus_eq,
+    mods = <(MOD_LCTL|MOD_RCTL)>;
+    keep-mods = <(MOD_LCTL|MOD_RCTL)>;
+    bindings = <&kp PLUS>, <&kp EQUAL>;
+)
+
+#define desk_left &kp LG(LC(LEFT))
+#define desk_right &kp LG(LC(RIGHT))
+
+// Absolute monitor targets, not a toggle: both hosts bind both hotkeys to the same
+// input, so the active host always drives the monitor to the named machine.
+// arch = DisplayPort-1 (0x0f), mac = HDMI-1 (0x11).
+// Meta+Ctrl+Alt, no shift: KDE matches the modifier set exactly, so the mac side
+// binds these three too rather than its own four-modifier hyper.
+#define SUPER(key) LC(LA(LG(key)))
+#define DISP_ARCH SUPER(N1)
+#define DISP_MAC  SUPER(N2)
+
+// Hotkey first (the host we're leaving still owns the BT link), then hand over.
+#define MAKE_HOST_SWITCH(NAME, DISP, PROFILE) \
+    ZMK_BEHAVIOR(NAME, macro, \
+        wait-ms = <40>; \
+        tap-ms = <40>; \
+        bindings = <&kp DISP>, <&bt BT_SEL PROFILE>; \
+    )
+
+MAKE_HOST_SWITCH(sw_arch, DISP_ARCH, 0)
+MAKE_HOST_SWITCH(sw_mac,  DISP_MAC,  1)
 
 ZMK_LAYER(default_layer,
 //  ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮   ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
@@ -139,18 +160,18 @@ ZMK_LAYER(default_layer,
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
     &kp LEFT_SHIFT    &kp Z             &kp X             &kp C             &kp V             &kp B                 &kp N             &kp M             &kp COMMA         &kp DOT           &kp FSLH          &kp RIGHT_SHIFT  
 //  ╰─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┴─────────────────╯
-                                        &layer_hold_mods 4 LEFT_ALT &sticky_shift_mod_layer NAV LEFT_SHIFT &space_tap_mod 6 SPACE    &layer_hold_mods 3 ENTER &sticky_shift_mod_layer 2 RIGHT_SHIFT &layer_hold_mods 5 ESCAPE
+                                        &mo MED           &lt NAV BACKSPACE &space_layer VDP SPACE    &lt SYM ENTER &sticky_shift_mod_layer NUM RIGHT_SHIFT &lt FNC ESCAPE
 //                                      ╰─────────────────┴─────────────────┴─────────────────╯   ╰─────────────────┴─────────────────┴─────────────────╯
 )
 
 
 ZMK_LAYER(nav_layer,
 //  ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮   ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
-    &none             &none             &swapper          &none             &swapper_shift    &none                 &kp C_AC_REDO     &kp C_AC_PASTE    &kp C_AC_COPY     &kp C_AC_CUT      &kp C_AC_UNDO     &none            
+    &none             &none             &swapper          &none             &swapper_shift    &none                 &kp LC(LS(Z))     &kp LC(V)         &kp LC(C)         &kp LC(X)         &kp LC(Z)         &none
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
     &none             &kp LEFT_GUI      &kp LEFT_ALT      &kp RIGHT_CONTROL &kp RIGHT_SHIFT   &none                 &kp LEFT_ARROW    &kp DOWN_ARROW    &kp UP_ARROW      &kp RIGHT         &none             &none            
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &none             &none             desk_left         &none             desk_right        &none                 &kp HOME          &kp PAGE_DOWN     &kp PAGE_UP       &kp END           &kp INSERT        &kp SCROLLLOCK   
+    &none             &none             desk_left         &none             desk_right        &none                 &kp HOME          &kp PAGE_DOWN     &kp PAGE_UP       &kp END           &kp INSERT        &kp SCROLLLOCK
 //  ╰─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┴─────────────────╯
                                                           ___               ___               ___                   &kp ENTER         &kp DELETE     &kp BACKSPACE       
 //                                      ╰─────────────────┴─────────────────┴─────────────────╯   ╰─────────────────┴─────────────────┴─────────────────╯
@@ -158,35 +179,23 @@ ZMK_LAYER(nav_layer,
 
 ZMK_LAYER(num_layer,
 //  ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮   ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
-    &none             &none             &kp NUMBER_7      &kp NUMBER_8      &kp NUMBER_9      &none                 &none             &none             &none             &none             &none             &kp BACKSPACE    
+    ___               &none             &kp NUMBER_7      &kp NUMBER_8      &kp NUMBER_9      &none                 &none             &none             &none             &none             &none             &kp BACKSPACE
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
     &kp COLON         &kp NUMBER_0      &kp NUMBER_4      &kp NUMBER_5      &kp NUMBER_6      &kp BACKSLASH         &none             &kp LEFT_SHIFT    &kp LEFT_CONTROL  &kp LEFT_ALT      &kp LEFT_GUI      &none            
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &none             &kp GRAVE         &kp NUMBER_1      &kp NUMBER_2      &kp NUMBER_3      &none                 &none             &none             &kp LESS_THAN     &kp GREATER_THAN  &kp FSLH          &none            
+    &none             &kp GRAVE         &kp NUMBER_1      &kp NUMBER_2      &kp NUMBER_3      &kp EXCLAMATION                 &none             &none             ___               ___               ___               &none            
 //  ╰─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┴─────────────────╯
-                                                          &kp DOT           &kp MINUS         &kp SPACE             &none             &none             &none            
-//                                      ╰─────────────────┴─────────────────┴─────────────────╯   ╰─────────────────┴─────────────────┴─────────────────╯
-)
-
-ZMK_LAYER(symbol_layer,
-//  ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮   ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
-    &kp DOT           &kp EQUAL         &kp AMPERSAND     &kp STAR          &kp BSLH          &kp PIPE              &none             &none             &none             &none             &none             &kp BACKSPACE    
-//  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &kp SEMICOLON     &kp COLON         &kp DOLLAR        &kp PERCENT       &kp CARET         &kp PLUS              &kp SPACE         &kp LSHFT         &kp LCTRL         &kp LEFT_ALT      &kp LEFT_GUI      &none            
-//  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &kp GRAVE         &kp TILDE         &kp EXCLAMATION   &kp AT            &kp HASH          &kp MINUS             &none             &none             &kp LESS_THAN     &kp GREATER_THAN  &none             &none            
-//  ╰─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┴─────────────────╯
-                                                          &shift_brace_lt   &kp UNDER         &kp SPACE             &none             &none             &none            
+                                                          &kp DOT           &kp MINUS         &kp SPACE             &kp ENTER         &none             &none            
 //                                      ╰─────────────────┴─────────────────┴─────────────────╯   ╰─────────────────┴─────────────────┴─────────────────╯
 )
 
 ZMK_LAYER(media_layer,
 //  ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮   ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
-    &none             &none             &none             &none             &none             &none                 &none             &to 0             &to 0             &none             &bt BT_CLR        &bt BT_CLR_ALL            
+    &bootloader       &kp DISP_ARCH     &kp DISP_MAC      &none             &none             &none                 &none             &kp C_BRIGHTNESS_DEC     &kp C_BRIGHTNESS_INC         &none             &bt BT_CLR        &bootloader
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &none             &kp LEFT_GUI      &kp LALT          &kp LCTRL         &kp LEFT_SHIFT    &none                 &kp C_PREVIOUS    &kp C_VOLUME_DOWN &kp C_VOLUME_UP   &kp C_NEXT        &none             &none       
+    &none             &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2  &bt BT_SEL 3          &none                 &kp C_PREVIOUS    &kp C_VOLUME_DOWN &kp C_VOLUME_UP   &kp C_NEXT        &none             &none       
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &none             &none             &none             &none             &none             &none                 &none             &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2      &none             &none            
+    &none             &sw_arch          &sw_mac           &none             &none             &none                 &none             &sw_arch          &sw_mac           &none             &none             &none
 //  ╰─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┴─────────────────╯
                                                           &none             &none             &none                 &kp C_STOP        &kp C_PLAY_PAUSE  &kp C_MUTE       
 //                                      ╰─────────────────┴─────────────────┴─────────────────╯   ╰─────────────────┴─────────────────┴─────────────────╯
@@ -196,22 +205,35 @@ ZMK_LAYER(function_layer,
 //  ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮   ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
     &none             &kp PRINTSCREEN   &kp F7            &kp F8            &kp F9            &kp F12               &none             &none             &none             &none             &none             &none            
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &none             &kp SCROLLLOCK    &kp F4            &kp F5            &kp F6            &kp F11               &kp SPACE         &kp RIGHT_SHIFT   &kp RIGHT_CONTROL &kp RIGHT_ALT     &kp RIGHT_GUI     &none            
+    &none             &kp SCROLLLOCK    &kp F4            &kp F5            &kp F6            &kp F11               &kp SPACE         &kp RIGHT_SHIFT   &kp RIGHT_CONTROL &kp LEFT_ALT      &kp RIGHT_GUI     &none
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
     &none             &kp PAUSE_BREAK   &kp F1            &kp F2            &kp F3            &kp F10               &none             &none             &none             &none             &none             &none            
 //  ╰─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┴─────────────────╯
-                                        &none             &kp LEFT_ALT      &kp SPACE                           &none             &none             &none            
+                                        &none             &kp LEFT_ALT      &kp SPACE                           &none             &none             &none
 //                                      ╰─────────────────┴─────────────────┴─────────────────╯   ╰─────────────────┴─────────────────┴─────────────────╯
 )
 
 ZMK_LAYER(virtual_desktop_layer,
 //  ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮   ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
-    &none             &kp PRINTSCREEN   &kp LC(F7)        &kp LC(F8)        &kp LC(F9)        &kp F12               &none             &none             &none             &none             &none             &none            
+    &none             &none             &kp LC(F7)        &kp LC(F8)        &kp LC(F9)        &none                 &none             &none             &none             &none             &none             &none
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &none             desk_left         &kp LC(F4)        &kp LC(F5)        &kp LC(F6)        desk_right            &kp LG(LEFT_ARROW)   &kp LG(DOWN_ARROW) &kp LG(UP_ARROW)     &kp LG(RIGHT_ARROW)          &none             &none            
+    &none             desk_left         &kp LC(F4)        &kp LC(F5)        &kp LC(F6)        desk_right            &kp LG(LEFT_ARROW) &kp LG(DOWN_ARROW) &kp LG(UP_ARROW) &kp LG(RIGHT_ARROW) &none          &none
 //  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    ___               &move_and_switch_to_desktop    &kp LC(F1)        &kp LC(F2)        &kp LC(F3)        &kp LC(F6)            &none             &none             &none             &none             &none             &none            
+    ___               &move_and_switch_to_desktop         &kp LC(F1)        &kp LC(F2)        &kp LC(F3)        &none                 &none             &none             &none             &none             &none             &none
 //  ╰─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┴─────────────────╯
-                                                          &none             &kp LEFT_ALT      &kp SPACE             &none             &none             &none            
+                                                          &none             &kp LEFT_ALT      &kp SPACE             &none             &none             &none
+//                                      ╰─────────────────┴─────────────────┴─────────────────╯   ╰─────────────────┴─────────────────┴─────────────────╯
+)
+
+// Declared last so it lands on layer 6. ZMK_LAYER assigns indices in declaration order.
+ZMK_LAYER(symbol_layer,
+//  ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮   ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
+    &kp DOT           &kp EQUAL         &kp AMPERSAND     &kp STAR          &kp BSLH          &kp PIPE              &none             &kp LBKT          &kp RBKT          &kp RPAR          &kp RBRC          &kp BACKSPACE
+//  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+    &kp SEMICOLON     &kp COLON         &kp DOLLAR        &kp PERCENT       &kp CARET         &plus_eq              &none             &kp LSHFT         &kp LCTRL         &kp LEFT_ALT      &kp LEFT_GUI      &none
+//  ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+    &kp GRAVE         &kp TILDE         &kp EXCLAMATION   &kp AT            &kp HASH          &kp MINUS             &none             &none             &kp LESS_THAN     &kp GREATER_THAN  &none             &none
+//  ╰─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┼─────────────────┤   ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┴─────────────────╯
+                                                          &shift_brace_lt   &kp UNDER         &kp SPACE             &none             &none             &none
 //                                      ╰─────────────────┴─────────────────┴─────────────────╯   ╰─────────────────┴─────────────────┴─────────────────╯
 )

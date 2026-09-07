@@ -5,5 +5,3 @@ services:
     build:
       dockerfile: ./dockerfiles/Dockerfile
       context: .
-    ports:
-      - 3000:3000

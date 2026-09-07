@@ -1,54 +1,58 @@
+// timeout-ms: how close together the two keys must land.
 #define COMBO_TERM_FAST 18
 #define COMBO_TERM_SLOW 30
 
-#define COMBO_TERM_VERY_SLOW 70
+// require-prior-idle-ms: how much quiet is needed BEFORE the combo will fire.
+// Higher is safer against a fast letter roll firing it mid-word, and harder to
+// use in flow.
+#define COMBO_IDLE 50
+// Key pairs that never occur as an English bigram need no guard at all.
+#define COMBO_IDLE_NONE 0
 
-#define COMBO_IDLE_FAST 150
-#define COMBO_IDLE_SLOW 50
+ZMK_COMBO(cut,   &kp LS(DEL),    LB3 LB1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(copy,  &kp LC(INS),  LB3 LB2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(paste, &kp LS(INS),  LB2 LB1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE)
 
-ZMK_COMBO(esc,   &swapper,      LT3 LT2,    DEF)
-ZMK_COMBO(ret,   &kp RETURN,   LT2 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+// Typed straight after an identifier (func(), arr[0]), so no idle guard: the 18ms
+// window is what stops a roll firing these.
+ZMK_COMBO(lpar,  &lpar_lt,     RM1 RM2,     DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_NONE, RS(LCTRL),    KEYS_L)
+ZMK_COMBO(rpar,  &rpar_gt,     RM2 RM3,     DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_NONE, LC(LALT),     KEYS_L)
+
+ZMK_COMBO(lbrc,  &kp LBRC,  RB1 RB2,  DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(rbrc,  &kp RBRC,  RB2 RB3,  DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+
+ZMK_COMBO(lbkt,  &kp LBKT,     RT1 RT2, DEF NUM,      COMBO_TERM_FAST, COMBO_IDLE_NONE)
+ZMK_COMBO(rbkt,  &kp RBKT,     RT2 RT3, DEF NUM,      COMBO_TERM_FAST, COMBO_IDLE_NONE)
+
+// NAV holds no letters at these positions, so there is no roll to guard against.
+ZMK_COMBO(lbkt_nav,  &kp LA(LBKT),     RT1 RT2, NAV,      COMBO_TERM_FAST, COMBO_IDLE_NONE)
+ZMK_COMBO(rbkt_nav,  &kp LA(RBKT),     RT2 RT3, NAV,      COMBO_TERM_FAST, COMBO_IDLE_NONE)
+
+// Inner-column squeezes. Nothing on the home row: S+F held is Alt+Shift for zellij tabs,
+// and a combo there fired ~ under the chord.
+ZMK_COMBO(tilde, &kp TILDE, RM0 RB0,  DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(excl,  &kp EXCL,  LM0 LB0,  DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+
+ZMK_COMBO(at,    &kp AT,       LT3 LM3,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(hash,  &kp HASH,     LT2 LM2,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(dllr,  &kp DLLR,     LT1 LM1,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(prcnt, &kp PRCNT,    LT0 LM0,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
 
 
-ZMK_COMBO(cut,   &kp LC(X),    LB3 LB1,     DEF NAV NUM, COMBO_IDLE_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(copy,  &kp LC(INS),  LB3 LB2,     DEF NAV NUM, COMBO_IDLE_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(paste, &kp LS(INS),  LB2 LB1,     DEF NAV NUM, COMBO_IDLE_SLOW, COMBO_IDLE_SLOW)
+ZMK_COMBO(grave, &kp GRAVE,    LM3 LB3,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(bslh,  &kp BSLH,     LM2 LB2,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(equal, &kp EQUAL,    LM1 LB1,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
 
-ZMK_COMBO(lpar,  &lpar_lt,     RM1 RM2,     DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LCTRL),    KEYS_L)
-ZMK_COMBO(rpar,  &rpar_gt,     RM2 RM3,     DEF NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, RS(LALT),     KEYS_L)
+ZMK_COMBO(caret, &kp CARET,    RT0 RM0,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(plus,  &plus_eq,     RT1 RM1,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(star,  &kp STAR,     RT2 RM2,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(amps,  &kp AMPS,     RT3 RM3,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
 
-ZMK_COMBO(lbrc,  &kp LBRC,  RB1 RB2,  DEF, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(rbrc,  &kp RBRC,  RB2 RB3,  DEF, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-
-ZMK_COMBO(lbkt,  &kp LBKT,     RT1 RT2, DEF NUM,      COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rbkt,  &kp RBKT,     RT2 RT3, DEF NUM,      COMBO_TERM_FAST, COMBO_IDLE_FAST)
-
-ZMK_COMBO(lbkt_nav,  &kp LA(LBKT),     RT1 RT2, NAV,      COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(rbkt_nav,  &kp RA(RBKT),     RT2 RT3, NAV,      COMBO_TERM_FAST, COMBO_IDLE_FAST)
-
-ZMK_COMBO(mshome,  &kp MINUS,  RM1 RM3,  DEF, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-
-ZMK_COMBO(at,    &kp AT,       LT3 LM3,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(hash,  &kp HASH,     LT2 LM2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(dllr,  &kp DLLR,     LT1 LM1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(prcnt, &kp PRCNT,    LT0 LM0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-
-
-ZMK_COMBO(grave, &kp GRAVE,    LM3 LB3,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(bslh,  &kp BSLH,     LM2 LB2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(equal, &kp EQUAL,    LM1 LB1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(tilde, &kp TILDE,    LM0 LB0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-
-ZMK_COMBO(caret, &kp CARET,    RT0 RM0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(plus,  &kp PLUS,     RT1 RM1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(star,  &kp STAR,     RT2 RM2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(amps,  &kp AMPS,     RT3 RM3,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-
-ZMK_COMBO(under, &kp UNDER,    RM0 RB0,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(minus, &kp MINUS,    RM1 RB1,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(fslh,  &kp FSLH,     RM2 RB2,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
-ZMK_COMBO(pipe,  &kp PIPE,     RM3 RB3,     DEF NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+// snake_case: must fire straight after a letter, and "jl" is not an English bigram.
+ZMK_COMBO(under, &kp UNDER,    RM1 RM3,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE_NONE)
+ZMK_COMBO(minus, &kp MINUS,    RM1 RB1,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(fslh,  &kp FSLH,     RM2 RB2,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
+ZMK_COMBO(pipe,  &kp PIPE,     RM3 RB3,     DEF NUM, COMBO_TERM_SLOW, COMBO_IDLE)
 
 ZMK_COMBO(caps_word,    &caps_word,             LH1 RH1,  DEF)
 ZMK_COMBO(caps_lock,    &kp CAPSLOCK,           LH2 RH2,  DEF)
-ZMK_COMBO(bootloader,   &bootloader,            LB4 RB4,  DEF)
